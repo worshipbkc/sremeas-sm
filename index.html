@@ -38,7 +38,87 @@
             border: 8px solid #333;
         }
 
-        /* Header Style */
+        /* Screen Management */
+        .screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+            background: linear-gradient(135deg, #2c1605 0%, #1a0d03 100%);
+            z-index: 10;
+        }
+
+        .screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.95);
+            z-index: 1;
+        }
+
+        /* 1. Welcome / Splash Screen Style */
+        .welcome-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .welcome-logo {
+            width: 110px;
+            height: 110px;
+            background: linear-gradient(135deg, #ffb74d, #f57c00);
+            border-radius: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 25px rgba(245, 124, 0, 0.4);
+            margin-bottom: 24px;
+            font-size: 50px;
+            color: #1a0d03;
+        }
+
+        .welcome-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .welcome-subtitle {
+            font-size: 14px;
+            color: #d7ccc8;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .start-btn {
+            width: 100%;
+            max-width: 260px;
+            padding: 14px;
+            background: linear-gradient(135deg, #ffa726, #fb8c00);
+            border: none;
+            border-radius: 30px;
+            color: #1a0d03;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(251, 140, 0, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .start-btn:active {
+            transform: scale(0.96);
+            box-shadow: 0 2px 10px rgba(251, 140, 0, 0.4);
+        }
+
+        /* 2. Main App Screen Style */
         .app-header {
             padding: 20px 16px 10px;
             display: flex;
@@ -166,6 +246,8 @@
             gap: 4px;
             cursor: pointer;
             transition: color 0.2s;
+            background: none;
+            border: none;
         }
 
         .nav-item i {
@@ -180,107 +262,132 @@
 <body>
 
     <div class="phone-container">
-        <!-- ក្បាលទំព័រ (Header) -->
-        <div class="app-header">
-            <div class="app-title">ចម្រៀងសរសើរដំកើងព្រះ</div>
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
-        </div>
 
-        <!-- សន្លឹករូបភាពចម្រៀង (Picture Cards Grid) -->
-        <div class="content-scroll">
-            <!-- Card 1 -->
-            <div class="picture-card">
-                <div class="card-img-container">
-                    <img src="https://images.unsplash.com/photo-1519817650390-64a93db51149?w=300" alt="Card Image">
-                    <div class="play-btn-overlay"><i class="fa-solid fa-play"></i></div>
+        <!-- ផ្នែកទី១៖ ទំព័រស្វាគមន៍ដំបូង (Welcome / Splash Screen) -->
+        <div id="welcomeScreen" class="screen">
+            <div class="welcome-content">
+                <div class="welcome-logo">
+                    <i class="fa-solid fa-hands-praying"></i>
                 </div>
-                <div class="card-info">
-                    <span class="card-title">ព្រះយេស៊ូវជាជីវិត</span>
-                    <span class="card-subtitle">Worship Leader</span>
-                </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="picture-card">
-                <div class="card-img-container">
-                    <img src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=300" alt="Card Image">
-                    <div class="play-btn-overlay"><i class="fa-solid fa-play"></i></div>
-                </div>
-                <div class="card-info">
-                    <span class="card-title">ជំនឿនិតជីដ</span>
-                    <span class="card-subtitle">New Psalms Choir</span>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="picture-card">
-                <div class="card-img-container">
-                    <img src="https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?w=300" alt="Card Image">
-                    <div class="play-btn-overlay"><i class="fa-solid fa-play"></i></div>
-                </div>
-                <div class="card-info">
-                    <span class="card-title">ព្រះជាម្ចាស់ដ៏ធំ</span>
-                    <span class="card-subtitle">Praise Team</span>
-                </div>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="picture-card">
-                <div class="card-img-container">
-                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300" alt="Card Image">
-                    <div class="play-btn-overlay"><i class="fa-solid fa-play"></i></div>
-                </div>
-                <div class="card-info">
-                    <span class="card-title">ដំណើរជាមួយព្រះ</span>
-                    <span class="card-subtitle">Journey with God</span>
-                </div>
-            </div>
-
-            <!-- Card 5 -->
-            <div class="picture-card">
-                <div class="card-img-container">
-                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300" alt="Card Image">
-                    <div class="play-btn-overlay"><i class="fa-solid fa-play"></i></div>
-                </div>
-                <div class="card-info">
-                    <span class="card-title">អំណរក្នុងព្រះអង្គ</span>
-                    <span class="card-subtitle">Youth Choir</span>
-                </div>
-            </div>
-
-            <!-- Card 6 -->
-            <div class="picture-card">
-                <div class="card-img-container">
-                    <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=300" alt="Card Image">
-                    <div class="play-btn-overlay"><i class="fa-solid fa-play"></i></div>
-                </div>
-                <div class="card-info">
-                    <span class="card-title">សន្តិភាពក្នុងព្រះគ្រីស្ទ</span>
-                    <span class="card-subtitle">Peace in Christ</span>
-                </div>
+                <div class="welcome-title">ចម្រៀងសរសើរដំកើងព្រះ</div>
+                <div class="welcome-subtitle">សូមស្វាគមន៍មកកាន់កម្មវិធីចម្រៀងជំនឿ និងការសរសើរដំកើងព្រះដ៏វិសុទ្ធ</div>
+                <button class="start-btn" onclick="goToMainApp()">ចាប់ផ្ដើមស្តាប់</button>
             </div>
         </div>
 
-        <!-- មឺនុយទាំង ៤ ខាងក្រោម (Bottom Menu: ចម្រៀង អាល់ប៊ុម Playlist Profile) -->
-        <div class="bottom-nav">
-            <a class="nav-item active">
-                <i class="fa-solid fa-music"></i>
-                <span>ចម្រៀង</span>
-            </a>
-            <a class="nav-item">
-                <i class="fa-solid fa-compact-disc"></i>
-                <span>អាល់ប៊ុម</span>
-            </a>
-            <a class="nav-item">
-                <i class="fa-solid fa-list-ul"></i>
-                <span>Playlist</span>
-            </a>
-            <a class="nav-item">
-                <i class="fa-solid fa-user"></i>
-                <span>Profile</span>
-            </a>
+        <!-- ផ្នែកទី២៖ ទំព័រដើមកម្មវិធី (Main UI App Screen) -->
+        <div id="mainScreen" class="screen hidden">
+            <!-- ក្បាលទំព័រ (Header) -->
+            <div class="app-header">
+                <div class="app-title">ចម្រៀងសរសើរដំកើងព្រះ</div>
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            </div>
+
+            <!-- សន្លឹករូបភាពចម្រៀង (Picture Cards Grid) -->
+            <div class="content-scroll">
+                <!-- Card 1 -->
+                <div class="picture-card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1519817650390-64a93db51149?w=300" alt="Card Image">
+                        <div class="play-btn-overlay"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <div class="card-info">
+                        <span class="card-title">ព្រះយេស៊ូវជាជីវិត</span>
+                        <span class="card-subtitle">Worship Leader</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="picture-card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=300" alt="Card Image">
+                        <div class="play-btn-overlay"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <div class="card-info">
+                        <span class="card-title">ជំនឿនិតជីដ</span>
+                        <span class="card-subtitle">New Psalms Choir</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="picture-card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?w=300" alt="Card Image">
+                        <div class="play-btn-overlay"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <div class="card-info">
+                        <span class="card-title">ព្រះជាម្ចាស់ដ៏ធំ</span>
+                        <span class="card-subtitle">Praise Team</span>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="picture-card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300" alt="Card Image">
+                        <div class="play-btn-overlay"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <div class="card-info">
+                        <span class="card-title">ដំណើរជាមួយព្រះ</span>
+                        <span class="card-subtitle">Journey with God</span>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="picture-card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300" alt="Card Image">
+                        <div class="play-btn-overlay"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <div class="card-info">
+                        <span class="card-title">អំណរក្នុងព្រះអង្គ</span>
+                        <span class="card-subtitle">Youth Choir</span>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="picture-card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=300" alt="Card Image">
+                        <div class="play-btn-overlay"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <div class="card-info">
+                        <span class="card-title">សន្តិភាពក្នុងព្រះគ្រីស្ទ</span>
+                        <span class="card-subtitle">Peace in Christ</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- មឺនុយទាំង ៤ ខាងក្រោម (Bottom Menu: ចម្រៀង អាល់ប៊ុម Playlist Profile) -->
+            <div class="bottom-nav">
+                <button class="nav-item active">
+                    <i class="fa-solid fa-music"></i>
+                    <span>ចម្រៀង</span>
+                </button>
+                <button class="nav-item">
+                    <i class="fa-solid fa-compact-disc"></i>
+                    <span>អាល់ប៊ុម</span>
+                </button>
+                <button class="nav-item">
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span>Playlist</span>
+                </button>
+                <button class="nav-item">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Profile</span>
+                </button>
+            </div>
         </div>
+
     </div>
+
+    <!-- JavaScript សម្រាប់បញ្ជាប្ដូរទំព័រពេលចុចប៊ូតុង -->
+    <script>
+        function goToMainApp() {
+            document.getElementById('welcomeScreen').classList.add('hidden');
+            document.getElementById('mainScreen').classList.remove('hidden');
+        }
+    </script>
 
 </body>
 </html>
