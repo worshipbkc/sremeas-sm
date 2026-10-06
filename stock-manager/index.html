@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stock Manager</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-icon">S</div><div><b>StockFlow</b><span>Inventory Manager</span></div></div>
+    <nav><a class="active">▦ <span>Stock Manager</span></a><a>◫ <span>Dashboard</span></a><a>↔ <span>Transactions</span></a><a>⚙ <span>Settings</span></a></nav>
+    <div class="sidebar-bottom"><small>Inventory system</small><strong>200 Products</strong></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><h1>Stock Manager</h1><p>Manage your products and inventory</p></div><button id="addBtn" class="primary">＋ Add Product</button></header>
+    <section id="stats" class="stats"></section>
+    <section class="panel">
+      <div id="filters"></div>
+      <div class="table-wrap"><table><thead><tr><th><input type="checkbox" id="selectAll"></th><th>Product</th><th>SKU</th><th>Category</th><th>Stock</th><th>Price</th><th>Status</th><th>Updated</th><th></th></tr></thead><tbody id="tableBody"></tbody></table></div>
+      <div id="pagination"></div>
+    </section>
+  </main>
+</div>
+<div id="dialogRoot"></div>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
